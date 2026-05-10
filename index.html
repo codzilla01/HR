@@ -44,7 +44,6 @@
             min-height: 100vh;
         }
 
-        /* ========== LOGIN PAGE ========== */
         .login-container {
             display: flex;
             align-items: center;
@@ -226,7 +225,6 @@
             color: #1a73e8;
         }
 
-        /* ========== MAIN LAYOUT ========== */
         .app-container {
             display: none;
             min-height: 100vh;
@@ -365,7 +363,6 @@
             background: #fecaca;
         }
 
-        /* ========== CARDS & STATS ========== */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -416,6 +413,10 @@
             background: #fee2e2;
             color: #dc2626;
         }
+        .stat-icon.teal {
+            background: #ccfbf1;
+            color: #0d9488;
+        }
         .stat-info h3 {
             font-size: 28px;
             font-weight: 700;
@@ -428,7 +429,6 @@
             font-size: 13px;
         }
 
-        /* ========== TABLES & PANELS ========== */
         .panel {
             background: #fff;
             border-radius: var(--radius);
@@ -504,6 +504,10 @@
             background: #ede9fe;
             color: #6366f1;
         }
+        .badge-teal {
+            background: #ccfbf1;
+            color: #0d9488;
+        }
         .actions-cell {
             display: flex;
             gap: 6px;
@@ -528,6 +532,109 @@
             grid-template-columns: 1fr 1fr;
             gap: 24px;
         }
+
+        /* Report Scheduling Enhancements */
+        .schedule-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            transition: var(--transition);
+            position: relative;
+        }
+        .schedule-card.active-schedule {
+            border-color: #16a34a;
+            background: #f0fdf4;
+        }
+        .schedule-card.paused-schedule {
+            border-color: #f59e0b;
+            background: #fffbeb;
+        }
+        .schedule-card .schedule-status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 6px;
+            animation: pulse 2s infinite;
+        }
+        .schedule-card .schedule-status-dot.running {
+            background: #16a34a;
+        }
+        .schedule-card .schedule-status-dot.paused {
+            background: #f59e0b;
+            animation: none;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(22, 163, 74, .4);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(22, 163, 74, 0);
+            }
+        }
+        .countdown-timer {
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a73e8;
+            direction: ltr;
+            display: inline-block;
+        }
+        .email-log-row {
+            font-size: 12px;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background: #cbd5e1;
+            border-radius: 28px;
+            transition: var(--transition);
+        }
+        .toggle-slider:before {
+            content: "";
+            position: absolute;
+            height: 22px;
+            width: 22px;
+            right: 3px;
+            bottom: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        .toggle-switch input:checked+.toggle-slider {
+            background: #16a34a;
+        }
+        .toggle-switch input:checked+.toggle-slider:before {
+            transform: translateX(-24px);
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+            border: 2px dashed #1a73e8;
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 16px 0;
+            text-align: center;
+        }
+        .highlight-box .big-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+
         @media (max-width: 900px) {
             .chart-row {
                 grid-template-columns: 1fr;
@@ -576,7 +683,6 @@
             z-index: 200;
         }
 
-        /* ========== MODAL ========== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -651,7 +757,6 @@
             }
         }
 
-        /* ========== TOAST ========== */
         .toast {
             position: fixed;
             bottom: 24px;
@@ -676,6 +781,9 @@
         .toast.error {
             border-right: 4px solid #dc2626;
         }
+        .toast.info {
+            border-right: 4px solid #6366f1;
+        }
         @keyframes toastIn {
             from {
                 opacity: 0;
@@ -687,15 +795,12 @@
             }
         }
 
-        /* ========== PAGE SECTIONS ========== */
         .page-section {
             display: none;
         }
         .page-section.active {
             display: block;
         }
-
-        /* API DOCS */
         .api-endpoint {
             background: #1e293b;
             color: #e2e8f0;
@@ -715,6 +820,35 @@
         .api-endpoint .url {
             color: #f59e0b;
         }
+        .divider {
+            border: none;
+            border-top: 2px solid #e2e8f0;
+            margin: 20px 0;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .tag-daily {
+            background: #dbeafe;
+            color: #1a73e8;
+        }
+        .tag-weekly {
+            background: #ede9fe;
+            color: #6366f1;
+        }
+        .tag-monthly {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        .tag-yearly {
+            background: #dcfce7;
+            color: #16a34a;
+        }
     </style>
 </head>
 <body>
@@ -726,7 +860,7 @@
             <div class="login-logo">
                 <div class="icon">👥</div>
                 <h2>نظام إدارة الموارد البشرية</h2>
-                <p>HRMS - لوحة تحكم مسؤول</p>
+                <p>HRMS - لوحة تحكم المسؤول</p>
             </div>
             <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
@@ -740,67 +874,38 @@
                 <button type="submit" class="btn btn-primary">🚀 تسجيل الدخول</button>
                 <div id="loginError" class="login-error"></div>
             </form>
-            <div class="login-hint">
-                🔑 للدخول التجريبي: <strong>admin</strong> / <strong>admin123</strong>
-            </div>
         </div>
     </div>
 
     <!-- ==================== MAIN APP ==================== -->
     <div id="appContainer" class="app-container">
-        <!-- Mobile Menu -->
         <button class="mobile-menu-btn" onclick="toggleSidebar()" title="القائمة">☰</button>
 
-        <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="s-icon">👥</div>
-                <div>
-                    <h3>HRMS</h3>
-                    <small>نظام الموارد البشرية</small>
-                </div>
+                <div><h3>HRMS</h3><small>نظام الموارد البشرية</small></div>
             </div>
             <nav class="sidebar-nav">
-                <a onclick="showPage('dashboard')" class="active" data-page="dashboard">
-                    <span class="nav-icon">📊</span> لوحة التحكم
-                </a>
-                <a onclick="showPage('employees')" data-page="employees">
-                    <span class="nav-icon">👥</span> إدارة الموظفين
-                </a>
-                <a onclick="showPage('attendance')" data-page="attendance">
-                    <span class="nav-icon">🕐</span> الحضور والانصراف
-                </a>
-                <a onclick="showPage('payroll')" data-page="payroll">
-                    <span class="nav-icon">💰</span> الرواتب
-                </a>
-                <a onclick="showPage('leaves')" data-page="leaves">
-                    <span class="nav-icon">📅</span> الإجازات
-                </a>
-                <a onclick="showPage('performance')" data-page="performance">
-                    <span class="nav-icon">⭐</span> تقييم الأداء
-                </a>
-                <a onclick="showPage('reports')" data-page="reports">
-                    <span class="nav-icon">📄</span> التقارير
-                </a>
-                <a onclick="showPage('apiDocs')" data-page="apiDocs">
-                    <span class="nav-icon">🔌</span> API والتكامل
-                </a>
-                <a onclick="showPage('settings')" data-page="settings">
-                    <span class="nav-icon">⚙️</span> الإعدادات
-                </a>
+                <a onclick="showPage('dashboard')" class="active" data-page="dashboard"><span class="nav-icon">📊</span> لوحة التحكم</a>
+                <a onclick="showPage('employees')" data-page="employees"><span class="nav-icon">👥</span> إدارة الموظفين</a>
+                <a onclick="showPage('attendance')" data-page="attendance"><span class="nav-icon">🕐</span> الحضور والانصراف</a>
+                <a onclick="showPage('payroll')" data-page="payroll"><span class="nav-icon">💰</span> الرواتب</a>
+                <a onclick="showPage('leaves')" data-page="leaves"><span class="nav-icon">📅</span> الإجازات</a>
+                <a onclick="showPage('performance')" data-page="performance"><span class="nav-icon">⭐</span> تقييم الأداء</a>
+                <a onclick="showPage('reports')" data-page="reports"><span class="nav-icon">📄</span> التقارير والإرسال الآلي</a>
+                <a onclick="showPage('apiDocs')" data-page="apiDocs"><span class="nav-icon">🔌</span> API والتكامل</a>
+                <a onclick="showPage('settings')" data-page="settings"><span class="nav-icon">⚙️</span> الإعدادات</a>
             </nav>
-            <div class="sidebar-footer">
-                🟢 النظام متصل - الإصدار 2.0.0  <br> 🟢 ( يدعم ZKTeco - GPS مفعل ) <br> 🟢 تصميم و تطوير <a href="https://me-one-blue.vercel.app/about.html">Mr.Developer</a>
-            </div>
+            <div class="sidebar-footer">🟢 النظام متصل | الإصدار 3.0.0<br>بريد آلي مفعل | ZKTeco متصل <a href="https://me-one-blue.vercel.app/about.html" style="color: #67687a;">Dev.Mohamed Elnil</a></div>
+            
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content" id="mainContent">
-            <!-- Top Bar -->
             <div class="topbar">
                 <h1 id="pageTitle">📊 لوحة التحكم</h1>
                 <div class="user-info">
-                    <span id="currentUserName">مسؤول</span>
+                    <span id="currentUserName">المسؤول</span>
                     <div class="avatar">A</div>
                     <button class="btn-logout" onclick="handleLogout()">🚪 خروج</button>
                 </div>
@@ -809,48 +914,23 @@
             <!-- ========== DASHBOARD PAGE ========== -->
             <div id="page-dashboard" class="page-section active">
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon blue">👥</div>
-                        <div class="stat-info"><h3 id="totalEmp">210</h3><p>إجمالي الموظفين</p></div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon green">✅</div>
-                        <div class="stat-info"><h3 id="presentToday">185</h3><p>حاضر اليوم</p></div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon orange">📅</div>
-                        <div class="stat-info"><h3 id="pendingLeaves">12</h3><p>طلبات إجازة معلقة</p></div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon purple">💰</div>
-                        <div class="stat-info"><h3 id="monthlyPayroll">945,000</h3><p>الرواتب الشهرية (ر.س)</p></div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon red">⚠️</div>
-                        <div class="stat-info"><h3 id="lateToday">8</h3><p>متأخر اليوم</p></div>
-                    </div>
+                    <div class="stat-card"><div class="stat-icon blue">👥</div><div class="stat-info"><h3 id="totalEmp">210</h3><p>إجمالي الموظفين</p></div></div>
+                    <div class="stat-card"><div class="stat-icon green">✅</div><div class="stat-info"><h3 id="presentToday">185</h3><p>حاضر اليوم</p></div></div>
+                    <div class="stat-card"><div class="stat-icon orange">📅</div><div class="stat-info"><h3 id="pendingLeaves">12</h3><p>طلبات إجازة معلقة</p></div></div>
+                    <div class="stat-card"><div class="stat-icon purple">💰</div><div class="stat-info"><h3 id="monthlyPayroll">945,000</h3><p>الرواتب الشهرية (ر.س)</p></div></div>
+                    <div class="stat-card"><div class="stat-icon red">⚠️</div><div class="stat-info"><h3 id="lateToday">8</h3><p>متأخر اليوم</p></div></div>
                 </div>
                 <div class="chart-row">
-                    <div class="panel">
-                        <div class="panel-header"><h2>📈 الحضور الشهري</h2></div>
-                        <div class="panel-body"><div class="chart-container"><canvas id="chartAttendance"></canvas></div></div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-header"><h2>👥 توزيع الأقسام</h2></div>
-                        <div class="panel-body"><div class="chart-container"><canvas id="chartDept"></canvas></div></div>
-                    </div>
+                    <div class="panel"><div class="panel-header"><h2>📈 الحضور الشهري</h2></div><div class="panel-body"><div class="chart-container"><canvas id="chartAttendance"></canvas></div></div></div>
+                    <div class="panel"><div class="panel-header"><h2>👥 توزيع الأقسام</h2></div><div class="panel-body"><div class="chart-container"><canvas id="chartDept"></canvas></div></div></div>
                 </div>
-                <div class="panel">
-                    <div class="panel-header"><h2>🕐 آخر تسجيلات الحضور اليوم</h2></div>
-                    <div class="panel-body" id="recentAttendanceTable"></div>
-                </div>
+                <div class="panel"><div class="panel-header"><h2>🕐 آخر تسجيلات الحضور اليوم</h2></div><div class="panel-body" id="recentAttendanceTable"></div></div>
             </div>
 
             <!-- ========== EMPLOYEES PAGE ========== -->
             <div id="page-employees" class="page-section">
                 <div class="panel">
-                    <div class="panel-header">
-                        <h2>👥 قائمة الموظفين</h2>
+                    <div class="panel-header"><h2>👥 قائمة الموظفين</h2>
                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
                             <input type="text" id="empSearch" placeholder="🔍 بحث عن موظف..." style="padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;font-size:13px;width:200px;" oninput="renderEmployees()">
                             <button class="btn btn-primary btn-sm" onclick="openEmployeeModal()">➕ إضافة موظف</button>
@@ -864,100 +944,162 @@
             <!-- ========== ATTENDANCE PAGE ========== -->
             <div id="page-attendance" class="page-section">
                 <div class="panel">
-                    <div class="panel-header">
-                        <h2>🕐 تسجيل الحضور والانصراف</h2>
-                        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                            <span style="font-size:13px;color:#64748b;">🟢 GPS مفعل | 📍 جهاز ZKTeco متصل</span>
-                            <button class="btn btn-primary btn-sm" onclick="recordAttendance()">📝 تسجيل حضور يدوي</button>
-                        </div>
+                    <div class="panel-header"><h2>🕐 تسجيل الحضور والانصراف</h2>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap;"><span style="font-size:13px;color:#64748b;">🟢 GPS مفعل | 📍 جهاز ZKTeco متصل</span><button class="btn btn-primary btn-sm" onclick="recordAttendance()">📝 تسجيل حضور يدوي</button></div>
                     </div>
                     <div class="panel-body" id="attendanceTable"></div>
                 </div>
-                <div class="panel">
-                    <div class="panel-header"><h2>📍 سجل البصمة وجهاز ZKTeco</h2></div>
-                    <div class="panel-body">
-                        <p style="color:#64748b;font-size:13px;">✅ تم تكامل النظام مع أجهزة ZKTeco الشائعة (K40, K50, ZK-8500). يتم جلب بيانات البصمة تلقائياً كل 5 دقائق.</p>
-                        <div class="api-endpoint">
-                            <span class="method">POST</span> <span class="url">/api/v1/attendance/zkteco/sync</span><br>
-                            { "device_id": "ZK-K40-001", "fingerprint_data": "base64...", "timestamp": "2026-04-29T08:00:00Z", "employee_code": "EMP-001" }
-                        </div>
-                    </div>
-                </div>
+                <div class="panel"><div class="panel-header"><h2>📍 سجل البصمة وجهاز ZKTeco</h2></div><div class="panel-body"><p style="color:#64748b;font-size:13px;">✅ تم تكامل النظام مع أجهزة ZKTeco الشائعة. يتم جلب بيانات البصمة تلقائياً كل 5 دقائق.</p><div class="api-endpoint"><span class="method">POST</span> <span class="url">/api/v1/attendance/zkteco/sync</span><br>{ "device_id": "ZK-K40-001", "fingerprint_data": "base64...", "timestamp": "2026-04-29T08:00:00Z", "employee_code": "EMP-001" }</div></div></div>
             </div>
 
             <!-- ========== PAYROLL PAGE ========== -->
             <div id="page-payroll" class="page-section">
-                <div class="panel">
-                    <div class="panel-header">
-                        <h2>💰 محرك حساب الرواتب</h2>
-                        <button class="btn btn-primary btn-sm" onclick="calculatePayroll()">🔄 تشغيل الحساب الآلي</button>
-                    </div>
-                    <div class="panel-body" id="payrollTable"></div>
-                </div>
-                <div class="panel">
-                    <div class="panel-header"><h2>📊 ملخص الرواتب - أبريل 2026</h2></div>
-                    <div class="panel-body">
-                        <div class="stats-grid" style="margin-bottom:0;">
-                            <div class="stat-card"><div class="stat-icon green">💰</div><div class="stat-info"><h3>945,000</h3><p>إجمالي الرواتب (ر.س)</p></div></div>
-                            <div class="stat-card"><div class="stat-icon blue">📉</div><div class="stat-info"><h3>85,000</h3><p>إجمالي الخصومات</p></div></div>
-                            <div class="stat-card"><div class="stat-icon orange">📈</div><div class="stat-info"><h3>52,000</h3><p>إجمالي البدلات</p></div></div>
-                            <div class="stat-card"><div class="stat-icon purple">🏦</div><div class="stat-info"><h3>103,950</h3><p>التأمينات الاجتماعية</p></div></div>
-                        </div>
-                    </div>
-                </div>
+                <div class="panel"><div class="panel-header"><h2>💰 محرك حساب الرواتب</h2><button class="btn btn-primary btn-sm" onclick="calculatePayroll()">🔄 تشغيل الحساب الآلي</button></div><div class="panel-body" id="payrollTable"></div></div>
+                <div class="panel"><div class="panel-header"><h2>📊 ملخص الرواتب - أبريل 2026</h2></div><div class="panel-body"><div class="stats-grid" style="margin-bottom:0;"><div class="stat-card"><div class="stat-icon green">💰</div><div class="stat-info"><h3>945,000</h3><p>إجمالي الرواتب (ر.س)</p></div></div><div class="stat-card"><div class="stat-icon blue">📉</div><div class="stat-info"><h3>85,000</h3><p>إجمالي الخصومات</p></div></div><div class="stat-card"><div class="stat-icon orange">📈</div><div class="stat-info"><h3>52,000</h3><p>إجمالي البدلات</p></div></div><div class="stat-card"><div class="stat-icon purple">🏦</div><div class="stat-info"><h3>103,950</h3><p>التأمينات الاجتماعية</p></div></div></div></div></div>
             </div>
 
             <!-- ========== LEAVES PAGE ========== -->
             <div id="page-leaves" class="page-section">
-                <div class="panel">
-                    <div class="panel-header">
-                        <h2>📅 إدارة الإجازات</h2>
-                        <button class="btn btn-primary btn-sm" onclick="openLeaveModal()">➕ طلب إجازة جديد</button>
-                    </div>
-                    <div class="panel-body" id="leavesTable"></div>
-                </div>
-                <div class="panel">
-                    <div class="panel-header"><h2>🔄 سير عمل الموافقات</h2></div>
-                    <div class="panel-body">
-                        <p style="font-size:13px;color:#64748b;">📋 الإجازات تمر بمراحل: تقديم → مراجعة المدير المباشر → موافقة المدير العام → موافقة الموارد البشرية → أرشفة</p>
-                        <div id="approvalWorkflow" style="margin-top:12px;"></div>
-                    </div>
-                </div>
+                <div class="panel"><div class="panel-header"><h2>📅 إدارة الإجازات</h2><button class="btn btn-primary btn-sm" onclick="openLeaveModal()">➕ طلب إجازة جديد</button></div><div class="panel-body" id="leavesTable"></div></div>
+                <div class="panel"><div class="panel-header"><h2>🔄 سير عمل الموافقات</h2></div><div class="panel-body"><p style="font-size:13px;color:#64748b;">📋 الإجازات تمر بمراحل: تقديم → مراجعة المدير المباشر → موافقة المدير العام → موافقة الموارد البشرية → أرشفة</p><div id="approvalWorkflow" style="margin-top:12px;"></div></div></div>
             </div>
 
             <!-- ========== PERFORMANCE PAGE ========== -->
             <div id="page-performance" class="page-section">
-                <div class="panel">
-                    <div class="panel-header">
-                        <h2>⭐ تقييم الأداء (ربع سنوي)</h2>
-                        <button class="btn btn-primary btn-sm" onclick="openPerformanceModal()">➕ تقييم جديد</button>
-                    </div>
-                    <div class="panel-body" id="performanceTable"></div>
-                </div>
+                <div class="panel"><div class="panel-header"><h2>⭐ تقييم الأداء (ربع سنوي)</h2><button class="btn btn-primary btn-sm" onclick="openPerformanceModal()">➕ تقييم جديد</button></div><div class="panel-body" id="performanceTable"></div></div>
             </div>
 
-            <!-- ========== REPORTS PAGE ========== -->
+            <!-- ========== REPORTS PAGE (ENHANCED) ========== -->
             <div id="page-reports" class="page-section">
+                <!-- بطاقة حالة الجدولة -->
                 <div class="panel">
-                    <div class="panel-header"><h2>📄 نظام التقارير الشامل</h2></div>
+                    <div class="panel-header"><h2>📬 حالة نظام الإرسال الآلي للتقارير</h2></div>
+                    <div class="panel-body">
+                        <div class="highlight-box" id="scheduleStatusBox">
+                            <div class="big-icon">📧</div>
+                            <h3 id="scheduleStatusTitle">نظام الإرسال الآلي</h3>
+                            <p id="scheduleStatusDesc" style="color:#64748b;font-size:14px;">يتم إرسال التقارير تلقائياً إلى البريد الإلكتروني للمدير التنفيذي</p>
+                            <div style="margin-top:12px;">
+                                <span style="font-weight:700;">البريد المستهدف:</span>
+                                <span id="ceoEmailDisplay" style="color:#1a73e8;font-weight:600;">ceo@company.com</span>
+                            </div>
+                            <div style="margin-top:8px;" id="nextScheduleInfo">
+                                <span style="font-weight:700;">🔔 التقرير القادم:</span>
+                                <span class="countdown-timer" id="nextScheduleTime">—</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بطاقة إعدادات الجدولة -->
+                <div class="panel">
+                    <div class="panel-header"><h2>⚙️ إعدادات الإرسال الآلي للتقرير</h2></div>
+                    <div class="panel-body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>📧 البريد الإلكتروني للمدير التنفيذي</label>
+                                <input type="email" id="reportCeoEmail" placeholder="CEO@company.com" value="ceo@company.com">
+                            </div>
+                            <div class="form-group">
+                                <label>📋 نوع التقرير المجدول</label>
+                                <select id="reportScheduleType">
+                                    <option value="comprehensive">📊 تقرير شامل (كل الأقسام)</option>
+                                    <option value="attendance">🕐 تقرير الحضور والانصراف</option>
+                                    <option value="payroll">💰 تقرير الرواتب</option>
+                                    <option value="leaves">📅 تقرير الإجازات</option>
+                                    <option value="performance">⭐ تقرير تقييم الأداء</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>🔄 تكرار الإرسال</label>
+                                <select id="reportFrequency" onchange="updateFrequencyOptions()">
+                                    <option value="daily">📆 يومياً</option>
+                                    <option value="weekly">📅 أسبوعياً</option>
+                                    <option value="monthly">🗓 شهرياً</option>
+                                    <option value="yearly">📆 سنوياً</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="frequencyDetailGroup">
+                                <label id="frequencyDetailLabel">⏰ وقت الإرسال</label>
+                                <input type="time" id="reportTime" value="08:00">
+                            </div>
+                        </div>
+                        <div class="form-row" id="weeklyDayRow" style="display:none;">
+                            <div class="form-group">
+                                <label>📅 يوم الإرسال الأسبوعي</label>
+                                <select id="reportWeeklyDay">
+                                    <option value="0">الأحد</option><option value="1">الاثنين</option><option value="2">الثلاثاء</option>
+                                    <option value="3">الأربعاء</option><option value="4">الخميس</option><option value="5">الجمعة</option><option value="6">السبت</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row" id="monthlyDayRow" style="display:none;">
+                            <div class="form-group">
+                                <label>📅 يوم الإرسال الشهري (1-28)</label>
+                                <input type="number" id="reportMonthlyDay" value="1" min="1" max="28">
+                            </div>
+                        </div>
+                        <div class="form-row" id="yearlyDateRow" style="display:none;">
+                            <div class="form-group">
+                                <label>📅 شهر الإرسال السنوي</label>
+                                <select id="reportYearlyMonth">
+                                    <option value="0">يناير</option><option value="1">فبراير</option><option value="2">مارس</option>
+                                    <option value="3">أبريل</option><option value="4">مايو</option><option value="5">يونيو</option>
+                                    <option value="6">يوليو</option><option value="7">أغسطس</option><option value="8">سبتمبر</option>
+                                    <option value="9">أكتوبر</option><option value="10">نوفمبر</option><option value="11">ديسمبر</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>📅 يوم الإرسال السنوي</label>
+                                <input type="number" id="reportYearlyDay" value="1" min="1" max="28">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <span style="display:inline-flex;align-items:center;gap:8px;">
+                                    تفعيل الإرسال الآلي
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="reportScheduleEnabled" checked onchange="updateScheduleUI()">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </span>
+                            </label>
+                        </div>
+                        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+                            <button class="btn btn-primary btn-sm" onclick="saveReportSchedule()">💾 حفظ إعدادات الجدولة</button>
+                            <button class="btn btn-info btn-sm" onclick="sendTestEmail()">📤 إرسال تقرير تجريبي الآن</button>
+                            <button class="btn btn-outline btn-sm" onclick="resetSchedule()">🔄 إعادة ضبط</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بطاقة سجل الإرسال -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2>📋 سجل التقارير المرسلة عبر البريد الإلكتروني</h2>
+                        <button class="btn btn-outline btn-sm" onclick="clearEmailLog()">🗑 مسح السجل</button>
+                    </div>
+                    <div class="panel-body" id="emailLogTable">
+                        <p style="text-align:center;color:#94a3b8;">لا توجد تقارير مرسلة بعد. قم بإرسال تقرير تجريبي أو انتظر الإرسال الآلي.</p>
+                    </div>
+                </div>
+
+                <!-- بطاقة التقارير اليدوية -->
+                <div class="panel">
+                    <div class="panel-header"><h2>📄 تصدير تقارير يدوية</h2></div>
                     <div class="panel-body">
                         <div class="stats-grid" style="margin-bottom:0;">
-                            <div class="stat-card" style="cursor:pointer;" onclick="exportReport('attendance')">
-                                <div class="stat-icon blue">📋</div><div class="stat-info"><h3>تقرير</h3><p>الحضور والانصراف</p></div>
-                            </div>
-                            <div class="stat-card" style="cursor:pointer;" onclick="exportReport('payroll')">
-                                <div class="stat-icon green">💰</div><div class="stat-info"><h3>تقرير</h3><p>الرواتب</p></div>
-                            </div>
-                            <div class="stat-card" style="cursor:pointer;" onclick="exportReport('leaves')">
-                                <div class="stat-icon orange">📅</div><div class="stat-info"><h3>تقرير</h3><p>الإجازات</p></div>
-                            </div>
-                            <div class="stat-card" style="cursor:pointer;" onclick="exportReport('performance')">
-                                <div class="stat-icon purple">⭐</div><div class="stat-info"><h3>تقرير</h3><p>تقييم الأداء</p></div>
-                            </div>
+                            <div class="stat-card" style="cursor:pointer;" onclick="exportReport('attendance')"><div class="stat-icon blue">📋</div><div class="stat-info"><h3>تقرير</h3><p>الحضور والانصراف</p></div></div>
+                            <div class="stat-card" style="cursor:pointer;" onclick="exportReport('payroll')"><div class="stat-icon green">💰</div><div class="stat-info"><h3>تقرير</h3><p>الرواتب</p></div></div>
+                            <div class="stat-card" style="cursor:pointer;" onclick="exportReport('leaves')"><div class="stat-icon orange">📅</div><div class="stat-info"><h3>تقرير</h3><p>الإجازات</p></div></div>
+                            <div class="stat-card" style="cursor:pointer;" onclick="exportReport('performance')"><div class="stat-icon purple">⭐</div><div class="stat-info"><h3>تقرير</h3><p>تقييم الأداء</p></div></div>
                         </div>
                         <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
                             <button class="btn btn-primary btn-sm" onclick="exportPDF()">📕 تصدير PDF</button>
-                            <button class="btn btn-success btn-sm" onclick="exportExcel()">📗 تصدير Excel</button>
+                            <button class="btn btn-success btn-sm" onclick="exportExcel()">📗 تصدير Excel كامل</button>
+                            <button class="btn btn-warning btn-sm" onclick="sendManualEmailReport()">📧 إرسال التقرير الحالي للمدير التنفيذي</button>
                         </div>
                     </div>
                 </div>
@@ -965,79 +1107,28 @@
 
             <!-- ========== API DOCS PAGE ========== -->
             <div id="page-apiDocs" class="page-section">
-                <div class="panel">
-                    <div class="panel-header"><h2>🔌 API والتكامل مع الأنظمة الأخرى</h2></div>
-                    <div class="panel-body">
-                        <h3>📡 نقاط النهاية (Endpoints)</h3>
-                        <div class="api-endpoint">
-                            <span class="method">GET</span> <span class="url">/api/v1/employees</span> - جلب قائمة الموظفين
-                        </div>
-                        <div class="api-endpoint">
-                            <span class="method">POST</span> <span class="url">/api/v1/attendance/check-in</span> - تسجيل حضور (يدعم GPS والبصمة)
-                        </div>
-                        <div class="api-endpoint">
-                            <span class="method">GET</span> <span class="url">/api/v1/payroll/{employee_id}</span> - استعلام الراتب
-                        </div>
-                        <div class="api-endpoint">
-                            <span class="method">POST</span> <span class="url">/api/v1/leaves/apply</span> - تقديم طلب إجازة
-                        </div>
-                        <div class="api-endpoint">
-                            <span class="method">POST</span> <span class="url">/api/v1/zkteco/sync</span> - مزامنة بيانات جهاز ZKTeco
-                        </div>
-                        <h3 style="margin-top:20px;">🔑 المصادقة</h3>
-                        <p style="font-size:13px;color:#64748b;">يتم استخدام <strong>Bearer Token</strong> في رأس الطلب: <code>Authorization: Bearer {token}</code></p>
-                    </div>
-                </div>
+                <div class="panel"><div class="panel-header"><h2>🔌 API والتكامل مع الأنظمة الأخرى</h2></div><div class="panel-body"><h3>📡 نقاط النهاية (Endpoints)</h3><div class="api-endpoint"><span class="method">GET</span> <span class="url">/api/v1/employees</span> - جلب قائمة الموظفين</div><div class="api-endpoint"><span class="method">POST</span> <span class="url">/api/v1/attendance/check-in</span> - تسجيل حضور (يدعم GPS والبصمة)</div><div class="api-endpoint"><span class="method">GET</span> <span class="url">/api/v1/payroll/{employee_id}</span> - استعلام الراتب</div><div class="api-endpoint"><span class="method">POST</span> <span class="url">/api/v1/leaves/apply</span> - تقديم طلب إجازة</div><div class="api-endpoint"><span class="method">POST</span> <span class="url">/api/v1/reports/send-email</span> - إرسال تقرير عبر البريد الإلكتروني</div><div class="api-endpoint"><span class="method">POST</span> <span class="url">/api/v1/reports/schedule</span> - جدولة التقارير الآلية</div><h3 style="margin-top:20px;">🔑 المصادقة</h3><p style="font-size:13px;color:#64748b;">يتم استخدام <strong>Bearer Token</strong> في رأس الطلب: <code>Authorization: Bearer {token}</code></p></div></div>
             </div>
 
             <!-- ========== SETTINGS PAGE ========== -->
             <div id="page-settings" class="page-section">
-                <div class="panel">
-                    <div class="panel-header"><h2>⚙️ الإعدادات العامة</h2></div>
-                    <div class="panel-body">
-                        <div class="form-row">
-                            <div class="form-group"><label>اسم الشركة</label><input type="text" value="شركة التقنية المتقدمة" id="settingCompany"></div>
-                            <div class="form-group"><label>البريد الإلكتروني</label><input type="email" value="hr@company.com" id="settingEmail"></div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group"><label>ساعات العمل اليومية</label><input type="number" value="8" id="settingWorkHours"></div>
-                            <div class="form-group"><label>أيام العمل الأسبوعية</label><input type="number" value="5" id="settingWorkDays"></div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group"><label>نسبة التأمينات الاجتماعية %</label><input type="number" value="11" id="settingSocialIns"></div>
-                            <div class="form-group"><label>نسبة ضريبة الدخل %</label><input type="number" value="5" id="settingTax"></div>
-                        </div>
-                        <div class="form-group"><label>تكامل جهاز ZKTeco</label>
-                            <select id="settingZKTeco"><option>مفعل</option><option>غير مفعل</option></select>
-                        </div>
-                        <button class="btn btn-primary btn-sm" onclick="saveSettings()">💾 حفظ الإعدادات</button>
-                    </div>
-                </div>
+                <div class="panel"><div class="panel-header"><h2>⚙️ الإعدادات العامة</h2></div><div class="panel-body"><div class="form-row"><div class="form-group"><label>اسم الشركة</label><input type="text" value="شركة التقنية المتقدمة" id="settingCompany"></div><div class="form-group"><label>البريد الإلكتروني للموارد البشرية</label><input type="email" value="hr@company.com" id="settingEmail"></div></div><div class="form-row"><div class="form-group"><label>ساعات العمل اليومية</label><input type="number" value="8" id="settingWorkHours"></div><div class="form-group"><label>أيام العمل الأسبوعية</label><input type="number" value="5" id="settingWorkDays"></div></div><div class="form-row"><div class="form-group"><label>نسبة التأمينات الاجتماعية %</label><input type="number" value="11" id="settingSocialIns"></div><div class="form-group"><label>نسبة ضريبة الدخل %</label><input type="number" value="5" id="settingTax"></div></div><div class="form-group"><label>تكامل جهاز ZKTeco</label><select id="settingZKTeco"><option>مفعل</option><option>غير مفعل</option></select></div><button class="btn btn-primary btn-sm" onclick="saveSettings()">💾 حفظ الإعدادات</button></div></div>
             </div>
         </main>
     </div>
 
-    <!-- ==================== MODAL ==================== -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal" id="modalContent"></div>
-    </div>
-
-    <!-- Toast Notification -->
+    <div class="modal-overlay" id="modalOverlay"><div class="modal" id="modalContent"></div></div>
     <div class="toast" id="toast"></div>
 
     <script>
         // ==================== DATA STORE ====================
-        const DEFAULT_ADMIN = { username: 'admin', password: 'admin123', name: 'مسؤول النظام' };
+        const DEFAULT_ADMIN = { username: 'admin', password: 'admin123', name: 'المسؤول النظام' };
 
-        // Load from localStorage or use defaults
-        function loadData(key, defaultVal) {
-            try { const d = localStorage.getItem(key); return d ? JSON.parse(d) : defaultVal; } catch (
-            e) { return defaultVal; }
-        }
+        function loadData(key, defaultVal) { try { const d = localStorage.getItem(key); return d ? JSON.parse(d) :
+                defaultVal; } catch (e) { return defaultVal; } }
 
         function saveData(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
 
-        // Initialize data
         let employees = loadData('hrms_employees', [
             { id: 1, code: 'EMP-001', name: 'أحمد محمد', dept: 'تقنية المعلومات', position: 'مطور برمجيات',
                 joinDate: '2023-05-15', phone: '0500000001', email: 'ahmed@company.com', baseSalary: 12000,
@@ -1048,16 +1139,16 @@
             { id: 3, code: 'EMP-003', name: 'خالد العتيبي', dept: 'المالية', position: 'محاسب', joinDate: '2024-01-20',
                 phone: '0500000003', email: 'khaled@company.com', baseSalary: 10000, allowances: 1500, status: 'نشط' },
             { id: 4, code: 'EMP-004', name: 'نورة القحطاني', dept: 'التسويق', position: 'أخصائية تسويق',
-                joinDate: '2023-08-01', phone: '0500000004', email: 'noura@company.com', baseSalary: 9000,
-                allowances: 1000, status: 'نشط' },
+                joinDate: '2023-08-01', phone: '0500000004', email: 'noura@company.com', baseSalary: 9000, allowances: 1000,
+                status: 'نشط' },
             { id: 5, code: 'EMP-005', name: 'فهد الشمري', dept: 'تقنية المعلومات', position: 'مدير تقنية المعلومات',
                 joinDate: '2021-11-05', phone: '0500000005', email: 'fahad@company.com', baseSalary: 18000,
                 allowances: 4000, status: 'نشط' },
             { id: 6, code: 'EMP-006', name: 'منى الحربي', dept: 'المبيعات', position: 'مندوبة مبيعات', joinDate: '2024-06-12',
                 phone: '0500000006', email: 'mona@company.com', baseSalary: 8000, allowances: 2000, status: 'نشط' },
             { id: 7, code: 'EMP-007', name: 'عمر السعيد', dept: 'تقنية المعلومات', position: 'مهندس شبكات',
-                joinDate: '2023-02-28', phone: '0500000007', email: 'omar@company.com', baseSalary: 11000,
-                allowances: 1800, status: 'نشط' },
+                joinDate: '2023-02-28', phone: '0500000007', email: 'omar@company.com', baseSalary: 11000, allowances: 1800,
+                status: 'نشط' },
         ]);
 
         let attendance = loadData('hrms_attendance', [
@@ -1072,30 +1163,40 @@
         ]);
 
         let leaves = loadData('hrms_leaves', [
-            { id: 1, empId: 1, empName: 'أحمد محمد', type: 'سنوية', startDate: '2026-05-10', endDate: '2026-05-20',
-                days: 10, reason: 'إجازة سنوية', status: 'معتمدة', approver: 'سارة عبدالله' },
-            { id: 2, empId: 4, empName: 'نورة القحطاني', type: 'مرضية', startDate: '2026-04-25', endDate: '2026-04-27',
-                days: 3, reason: 'مرض', status: 'معلقة', approver: '-' },
-            { id: 3, empId: 6, empName: 'منى الحربي', type: 'طارئة', startDate: '2026-04-30', endDate: '2026-05-01',
-                days: 2, reason: 'ظرف عائلي طارئ', status: 'معلقة', approver: '-' },
+            { id: 1, empId: 1, empName: 'أحمد محمد', type: 'سنوية', startDate: '2026-05-10', endDate: '2026-05-20', days: 10,
+                reason: 'إجازة سنوية', status: 'معتمدة', approver: 'سارة عبدالله' },
+            { id: 2, empId: 4, empName: 'نورة القحطاني', type: 'مرضية', startDate: '2026-04-25', endDate: '2026-04-27', days: 3,
+                reason: 'مرض', status: 'معلقة', approver: '-' },
+            { id: 3, empId: 6, empName: 'منى الحربي', type: 'طارئة', startDate: '2026-04-30', endDate: '2026-05-01', days: 2,
+                reason: 'ظرف عائلي طارئ', status: 'معلقة', approver: '-' },
         ]);
 
         let performances = loadData('hrms_performances', [
-            { id: 1, empId: 1, empName: 'أحمد محمد', quarter: 'Q1-2026', score: 92, rating: 'ممتاز',
-                reviewer: 'فهد الشمري', date: '2026-03-31' },
+            { id: 1, empId: 1, empName: 'أحمد محمد', quarter: 'Q1-2026', score: 92, rating: 'ممتاز', reviewer: 'فهد الشمري',
+                date: '2026-03-31' },
             { id: 2, empId: 2, empName: 'سارة عبدالله', quarter: 'Q1-2026', score: 88, rating: 'جيد جداً',
                 reviewer: 'المدير العام', date: '2026-03-31' },
         ]);
 
-        let settings = loadData('hrms_settings', {
-            companyName: 'شركة التقنية المتقدمة',
-            email: 'hr@company.com',
-            workHours: 8,
-            workDays: 5,
-            socialInsurance: 11,
-            taxRate: 5,
-            zkteco: 'مفعل'
+        let settings = loadData('hrms_settings', { companyName: 'شركة التقنية المتقدمة', email: 'hr@company.com',
+            workHours: 8, workDays: 5, socialInsurance: 11, taxRate: 5, zkteco: 'مفعل' });
+
+        // New: Report Schedule & Email Log
+        let reportSchedule = loadData('hrms_report_schedule', {
+            ceoEmail: 'ceo@company.com',
+            reportType: 'comprehensive',
+            frequency: 'daily',
+            time: '08:00',
+            weeklyDay: 0,
+            monthlyDay: 1,
+            yearlyMonth: 0,
+            yearlyDay: 1,
+            enabled: true,
+            lastSent: null,
+            nextScheduled: null
         });
+
+        let emailLog = loadData('hrms_email_log', []);
 
         let nextEmpId = employees.length > 0 ? Math.max(...employees.map(e => e.id)) + 1 : 1;
         let nextAttId = attendance.length > 0 ? Math.max(...attendance.map(a => a.id)) + 1 : 1;
@@ -1108,6 +1209,8 @@
             saveData('hrms_leaves', leaves);
             saveData('hrms_performances', performances);
             saveData('hrms_settings', settings);
+            saveData('hrms_report_schedule', reportSchedule);
+            saveData('hrms_email_log', emailLog);
         }
 
         // ==================== AUTH ====================
@@ -1127,6 +1230,7 @@
                 document.querySelector('.topbar .avatar').textContent = currentUser.name.charAt(0);
                 showPage('dashboard');
                 showToast('✅ تم تسجيل الدخول بنجاح', 'success');
+                startScheduleChecker();
             } else {
                 errEl.textContent = '❌ اسم المستخدم أو كلمة المرور غير صحيحة';
                 errEl.classList.add('show');
@@ -1147,34 +1251,18 @@
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
             const page = document.getElementById('page-' + pageName);
             if (page) page.classList.add('active');
-
             document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
             const link = document.querySelector(`.sidebar-nav a[data-page="${pageName}"]`);
             if (link) link.classList.add('active');
-
-            const titles = {
-                dashboard: '📊 لوحة التحكم',
-                employees: '👥 إدارة الموظفين',
-                attendance: '🕐 الحضور والانصراف',
-                payroll: '💰 الرواتب',
-                leaves: '📅 الإجازات',
-                performance: '⭐ تقييم الأداء',
-                reports: '📄 التقارير',
-                apiDocs: '🔌 API والتكامل',
-                settings: '⚙️ الإعدادات'
-            };
+            const titles = { dashboard: '📊 لوحة التحكم', employees: '👥 إدارة الموظفين', attendance: '🕐 الحضور والانصراف',
+                payroll: '💰 الرواتب', leaves: '📅 الإجازات', performance: '⭐ تقييم الأداء', reports: '📄 التقارير والإرسال الآلي',
+                apiDocs: '🔌 API والتكامل', settings: '⚙️ الإعدادات' };
             document.getElementById('pageTitle').textContent = titles[pageName] || pageName;
-
-            // Close sidebar on mobile
             document.getElementById('sidebar').classList.remove('open');
-
-            // Refresh page content
             refreshPage(pageName);
         }
 
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
-        }
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
 
         function refreshPage(pageName) {
             switch (pageName) {
@@ -1197,6 +1285,9 @@
                     renderPerformance();
                     break;
                 case 'reports':
+                    loadReportScheduleToForm();
+                    renderEmailLog();
+                    updateScheduleUI();
                     break;
                 case 'settings':
                     loadSettingsToForm();
@@ -1214,19 +1305,10 @@
                 e) => s + e.baseSalary + e.allowances, 0).toLocaleString();
             document.getElementById('lateToday').textContent = attendance.filter(a => a.date === '2026-04-29' && a
                 .status === 'متأخر').length;
-
-            // Recent attendance table
             const recentHtml = `
-            <table>
-              <thead><tr><th>الموظف</th><th>التاريخ</th><th>الدخول</th><th>الخروج</th><th>الطريقة</th><th>الحالة</th></tr></thead>
-              <tbody>${attendance.slice(-8).reverse().map(a=>`
-                <tr>
-                  <td>${a.empName}</td><td>${a.date}</td><td>${a.checkIn}</td><td>${a.checkOut||'-'}</td>
-                  <td>${a.method}</td><td><span class="badge ${a.status==='حاضر'?'badge-success':'badge-warning'}">${a.status}</span></td>
-                </tr>`).join('')}</tbody></table>`;
+            <table><thead><tr><th>الموظف</th><th>التاريخ</th><th>الدخول</th><th>الخروج</th><th>الطريقة</th><th>الحالة</th></tr></thead>
+              <tbody>${attendance.slice(-8).reverse().map(a=>`<tr><td>${a.empName}</td><td>${a.date}</td><td>${a.checkIn}</td><td>${a.checkOut||'-'}</td><td>${a.method}</td><td><span class="badge ${a.status==='حاضر'?'badge-success':'badge-warning'}">${a.status}</span></td></tr>`).join('')}</tbody></table>`;
             document.getElementById('recentAttendanceTable').innerHTML = recentHtml;
-
-            // Charts
             renderCharts();
         }
 
@@ -1238,32 +1320,23 @@
             if (!ctx1 || !ctx2) return;
             if (chartAtt) chartAtt.destroy();
             if (chartDept) chartDept.destroy();
-
             chartAtt = new Chart(ctx1, {
                 type: 'bar',
-                data: {
-                    labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
-                    datasets: [
-                        { label: 'حضور', data: [195, 200, 190, 205, 198, 210],
-                            backgroundColor: 'rgba(26,115,232,0.7)', borderRadius: 8 },
-                        { label: 'غياب', data: [5, 8, 12, 4, 7, 3],
-                            backgroundColor: 'rgba(220,38,38,0.7)', borderRadius: 8 }
-                    ]
-                },
+                data: { labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
+                    datasets: [{ label: 'حضور', data: [195, 200, 190, 205, 198, 210],
+                        backgroundColor: 'rgba(26,115,232,0.7)', borderRadius: 8 }, { label: 'غياب', data: [5, 8, 12, 4,
+                            7, 3
+                        ], backgroundColor: 'rgba(220,38,38,0.7)', borderRadius: 8 }] },
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } },
                     scales: { y: { beginAtZero: true } } }
             });
-
             const depts = {};
             employees.forEach(e => { depts[e.dept] = (depts[e.dept] || 0) + 1; });
             chartDept = new Chart(ctx2, {
                 type: 'doughnut',
-                data: {
-                    labels: Object.keys(depts),
-                    datasets: [{ data: Object.values(depts), backgroundColor: ['#1a73e8', '#0d9488', '#f59e0b',
-                            '#6366f1', '#16a34a', '#dc2626'
-                        ], borderWidth: 2, borderColor: '#fff' }]
-                },
+                data: { labels: Object.keys(depts), datasets: [{ data: Object.values(depts),
+                        backgroundColor: ['#1a73e8', '#0d9488', '#f59e0b', '#6366f1', '#16a34a', '#dc2626'],
+                        borderWidth: 2, borderColor: '#fff' }] },
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
             });
         }
@@ -1271,24 +1344,11 @@
         // ==================== EMPLOYEES ====================
         function renderEmployees() {
             const search = (document.getElementById('empSearch')?.value || '').toLowerCase();
-            const filtered = employees.filter(e =>
-                e.name.toLowerCase().includes(search) || e.code.toLowerCase().includes(search) || e.dept.toLowerCase()
-                .includes(search)
-            );
+            const filtered = employees.filter(e => e.name.toLowerCase().includes(search) || e.code.toLowerCase()
+                .includes(search) || e.dept.toLowerCase().includes(search));
             const html = `
-            <table>
-              <thead><tr><th>الكود</th><th>الاسم</th><th>القسم</th><th>المنصب</th><th>تاريخ التعيين</th><th>الراتب الأساسي</th><th>الحالة</th><th>إجراءات</th></tr></thead>
-              <tbody>${filtered.map(e=>`
-                <tr>
-                  <td><strong>${e.code}</strong></td><td>${e.name}</td><td>${e.dept}</td><td>${e.position}</td>
-                  <td>${e.joinDate}</td><td>${e.baseSalary.toLocaleString()} ر.س</td>
-                  <td><span class="badge ${e.status==='نشط'?'badge-success':'badge-danger'}">${e.status}</span></td>
-                  <td class="actions-cell">
-                    <button style="background:#dbeafe;color:#1a73e8;" onclick="viewEmployee(${e.id})">👁 عرض</button>
-                    <button style="background:#fef3c7;color:#d97706;" onclick="editEmployee(${e.id})">✏️ تعديل</button>
-                    <button style="background:#fee2e2;color:#dc2626;" onclick="deleteEmployee(${e.id})">🗑 حذف</button>
-                  </td>
-                </tr>`).join('')}</tbody></table>`;
+            <table><thead><tr><th>الكود</th><th>الاسم</th><th>القسم</th><th>المنصب</th><th>تاريخ التعيين</th><th>الراتب الأساسي</th><th>الحالة</th><th>إجراءات</th></tr></thead>
+              <tbody>${filtered.map(e=>`<tr><td><strong>${e.code}</strong></td><td>${e.name}</td><td>${e.dept}</td><td>${e.position}</td><td>${e.joinDate}</td><td>${e.baseSalary.toLocaleString()} ر.س</td><td><span class="badge ${e.status==='نشط'?'badge-success':'badge-danger'}">${e.status}</span></td><td class="actions-cell"><button style="background:#dbeafe;color:#1a73e8;" onclick="viewEmployee(${e.id})">👁 عرض</button><button style="background:#fef3c7;color:#d97706;" onclick="editEmployee(${e.id})">✏️ تعديل</button><button style="background:#fee2e2;color:#dc2626;" onclick="deleteEmployee(${e.id})">🗑 حذف</button></td></tr>`).join('')}</tbody></table>`;
             document.getElementById('employeesTable').innerHTML = filtered.length ? html :
                 '<p style="text-align:center;color:#64748b;">لا يوجد موظفين مطابقين</p>';
         }
@@ -1298,61 +1358,24 @@
             const title = emp ? '✏️ تعديل بيانات الموظف' : '➕ إضافة موظف جديد';
             const html = `
             <div class="modal-header"><h3>${title}</h3><button class="modal-close" onclick="closeModal()">✕</button></div>
-            <div class="modal-body">
-              <form id="empForm" onsubmit="saveEmployee(event, ${empId})">
-                <div class="form-row">
-                  <div class="form-group"><label>الكود</label><input type="text" id="efCode" value="${emp?.code||'EMP-'+String(nextEmpId).padStart(3,'0')}" required></div>
-                  <div class="form-group"><label>الاسم الكامل</label><input type="text" id="efName" value="${emp?.name||''}" required></div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group"><label>القسم</label><select id="efDept"><option>تقنية المعلومات</option><option>الموارد البشرية</option><option>المالية</option><option>التسويق</option><option>المبيعات</option></select></div>
-                  <div class="form-group"><label>المنصب</label><input type="text" id="efPosition" value="${emp?.position||''}" required></div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group"><label>تاريخ التعيين</label><input type="date" id="efJoinDate" value="${emp?.joinDate||''}" required></div>
-                  <div class="form-group"><label>رقم الهاتف</label><input type="text" id="efPhone" value="${emp?.phone||''}"></div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="efEmail" value="${emp?.email||''}"></div>
-                  <div class="form-group"><label>الراتب الأساسي (ر.س)</label><input type="number" id="efBaseSalary" value="${emp?.baseSalary||''}" required></div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group"><label>البدلات (ر.س)</label><input type="number" id="efAllowances" value="${emp?.allowances||0}"></div>
-                  <div class="form-group"><label>الحالة</label><select id="efStatus"><option>نشط</option><option>غير نشط</option></select></div>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;">💾 حفظ</button>
-              </form>
-            </div>`;
+            <div class="modal-body"><form id="empForm" onsubmit="saveEmployee(event, ${empId})"><div class="form-row"><div class="form-group"><label>الكود</label><input type="text" id="efCode" value="${emp?.code||'EMP-'+String(nextEmpId).padStart(3,'0')}" required></div><div class="form-group"><label>الاسم الكامل</label><input type="text" id="efName" value="${emp?.name||''}" required></div></div><div class="form-row"><div class="form-group"><label>القسم</label><select id="efDept"><option>تقنية المعلومات</option><option>الموارد البشرية</option><option>المالية</option><option>التسويق</option><option>المبيعات</option></select></div><div class="form-group"><label>المنصب</label><input type="text" id="efPosition" value="${emp?.position||''}" required></div></div><div class="form-row"><div class="form-group"><label>تاريخ التعيين</label><input type="date" id="efJoinDate" value="${emp?.joinDate||''}" required></div><div class="form-group"><label>رقم الهاتف</label><input type="text" id="efPhone" value="${emp?.phone||''}"></div></div><div class="form-row"><div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="efEmail" value="${emp?.email||''}"></div><div class="form-group"><label>الراتب الأساسي (ر.س)</label><input type="number" id="efBaseSalary" value="${emp?.baseSalary||''}" required></div></div><div class="form-row"><div class="form-group"><label>البدلات (ر.س)</label><input type="number" id="efAllowances" value="${emp?.allowances||0}"></div><div class="form-group"><label>الحالة</label><select id="efStatus"><option>نشط</option><option>غير نشط</option></select></div></div><button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;">💾 حفظ</button></form></div>`;
             document.getElementById('modalContent').innerHTML = html;
             document.getElementById('modalOverlay').classList.add('active');
-            if (emp) {
-                document.getElementById('efDept').value = emp.dept;
-                document.getElementById('efStatus').value = emp.status;
-            }
+            if (emp) { document.getElementById('efDept').value = emp.dept;
+                document.getElementById('efStatus').value = emp.status; }
         }
 
         function saveEmployee(e, empId) {
             e.preventDefault();
-            const data = {
-                id: empId || nextEmpId,
-                code: document.getElementById('efCode').value,
-                name: document.getElementById('efName').value,
-                dept: document.getElementById('efDept').value,
-                position: document.getElementById('efPosition').value,
-                joinDate: document.getElementById('efJoinDate').value,
-                phone: document.getElementById('efPhone').value,
-                email: document.getElementById('efEmail').value,
-                baseSalary: parseInt(document.getElementById('efBaseSalary').value) || 0,
-                allowances: parseInt(document.getElementById('efAllowances').value) || 0,
-                status: document.getElementById('efStatus').value
-            };
-            if (empId) {
-                const idx = employees.findIndex(e => e.id === empId);
-                if (idx >= 0) employees[idx] = data;
-            } else {
+            const data = { id: empId || nextEmpId, code: document.getElementById('efCode').value, name: document
+                    .getElementById('efName').value, dept: document.getElementById('efDept').value, position: document
+                    .getElementById('efPosition').value, joinDate: document.getElementById('efJoinDate').value, phone: document
+                    .getElementById('efPhone').value, email: document.getElementById('efEmail').value, baseSalary: parseInt(
+                        document.getElementById('efBaseSalary').value) || 0, allowances: parseInt(document.getElementById(
+                        'efAllowances').value) || 0, status: document.getElementById('efStatus').value };
+            if (empId) { const idx = employees.findIndex(e => e.id === empId); if (idx >= 0) employees[idx] = data; } else {
                 employees.push(data);
-                nextEmpId++;
-            }
+                nextEmpId++; }
             persistAll();
             closeModal();
             renderEmployees();
@@ -1363,48 +1386,25 @@
         function editEmployee(id) { openEmployeeModal(id); }
 
         function viewEmployee(id) {
-            const emp = employees.find(e => e.id === id);
-            if (!emp) return;
+            const emp = employees.find(e => e.id === id); if (!emp) return;
             const html = `
             <div class="modal-header"><h3>👤 الملف الرقمي - ${emp.name}</h3><button class="modal-close" onclick="closeModal()">✕</button></div>
-            <div class="modal-body">
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px;">
-                <div><strong>الكود:</strong> ${emp.code}</div><div><strong>القسم:</strong> ${emp.dept}</div>
-                <div><strong>المنصب:</strong> ${emp.position}</div><div><strong>تاريخ التعيين:</strong> ${emp.joinDate}</div>
-                <div><strong>الهاتف:</strong> ${emp.phone}</div><div><strong>البريد:</strong> ${emp.email}</div>
-                <div><strong>الراتب الأساسي:</strong> ${emp.baseSalary.toLocaleString()} ر.س</div><div><strong>البدلات:</strong> ${emp.allowances.toLocaleString()} ر.س</div>
-                <div><strong>الحالة:</strong> <span class="badge ${emp.status==='نشط'?'badge-success':'badge-danger'}">${emp.status}</span></div>
-                <div><strong>صافي الراتب:</strong> ${(emp.baseSalary+emp.allowances).toLocaleString()} ر.س</div>
-              </div>
-              <hr style="margin:16px 0;border-color:#e2e8f0;">
-              <h4>📋 السجل الوظيفي</h4>
-              <p style="font-size:13px;color:#64748b;">• تعيين: ${emp.joinDate} | • آخر ترقية: - | • تقييمات: ${performances.filter(p=>p.empId===id).length} تقييم</p>
-            </div>`;
+            <div class="modal-body"><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px;"><div><strong>الكود:</strong> ${emp.code}</div><div><strong>القسم:</strong> ${emp.dept}</div><div><strong>المنصب:</strong> ${emp.position}</div><div><strong>تاريخ التعيين:</strong> ${emp.joinDate}</div><div><strong>الهاتف:</strong> ${emp.phone}</div><div><strong>البريد:</strong> ${emp.email}</div><div><strong>الراتب الأساسي:</strong> ${emp.baseSalary.toLocaleString()} ر.س</div><div><strong>البدلات:</strong> ${emp.allowances.toLocaleString()} ر.س</div><div><strong>الحالة:</strong> <span class="badge ${emp.status==='نشط'?'badge-success':'badge-danger'}">${emp.status}</span></div><div><strong>صافي الراتب:</strong> ${(emp.baseSalary+emp.allowances).toLocaleString()} ر.س</div></div><hr style="margin:16px 0;border-color:#e2e8f0;"><h4>📋 السجل الوظيفي</h4><p style="font-size:13px;color:#64748b;">• تعيين: ${emp.joinDate} | • تقييمات: ${performances.filter(p=>p.empId===id).length} تقييم</p></div>`;
             document.getElementById('modalContent').innerHTML = html;
             document.getElementById('modalOverlay').classList.add('active');
         }
 
-        function deleteEmployee(id) {
-            if (confirm('هل أنت متأكد من حذف هذا الموظف؟')) {
-                employees = employees.filter(e => e.id !== id);
-                persistAll();
-                renderEmployees();
-                updateDashboard();
-                showToast('🗑 تم حذف الموظف', 'error');
-            }
-        }
+        function deleteEmployee(id) { if (confirm('هل أنت متأكد من حذف هذا الموظف؟')) { employees = employees.filter(e => e.id !==
+                id);
+            persistAll();
+            renderEmployees();
+            updateDashboard();
+            showToast('🗑 تم حذف الموظف', 'error'); } }
 
         function exportEmployeesExcel() {
-            const ws = XLSX.utils.json_to_sheet(employees.map(e => ({
-                'الكود': e.code,
-                'الاسم': e.name,
-                'القسم': e.dept,
-                'المنصب': e.position,
-                'تاريخ التعيين': e.joinDate,
-                'الراتب الأساسي': e.baseSalary,
-                'البدلات': e.allowances,
-                'الحالة': e.status
-            })));
+            const ws = XLSX.utils.json_to_sheet(employees.map(e => ({ 'الكود': e.code, 'الاسم': e.name, 'القسم': e.dept,
+                'المنصب': e.position, 'تاريخ التعيين': e.joinDate, 'الراتب الأساسي': e.baseSalary, 'البدلات': e.allowances,
+                'الحالة': e.status })));
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'الموظفين');
             XLSX.writeFile(wb, 'employees.xlsx');
@@ -1414,14 +1414,8 @@
         // ==================== ATTENDANCE ====================
         function renderAttendance() {
             const html = `
-            <table>
-              <thead><tr><th>الموظف</th><th>التاريخ</th><th>وقت الدخول</th><th>وقت الخروج</th><th>طريقة التسجيل</th><th>الموقع</th><th>الحالة</th></tr></thead>
-              <tbody>${attendance.slice().reverse().map(a=>`
-                <tr>
-                  <td>${a.empName}</td><td>${a.date}</td><td>${a.checkIn}</td><td>${a.checkOut||'-'}</td>
-                  <td>${a.method}</td><td>📍 ${a.location}</td>
-                  <td><span class="badge ${a.status==='حاضر'?'badge-success':a.status==='متأخر'?'badge-warning':'badge-danger'}">${a.status}</span></td>
-                </tr>`).join('')}</tbody></table>`;
+            <table><thead><tr><th>الموظف</th><th>التاريخ</th><th>وقت الدخول</th><th>وقت الخروج</th><th>طريقة التسجيل</th><th>الموقع</th><th>الحالة</th></tr></thead>
+              <tbody>${attendance.slice().reverse().map(a=>`<tr><td>${a.empName}</td><td>${a.date}</td><td>${a.checkIn}</td><td>${a.checkOut||'-'}</td><td>${a.method}</td><td>📍 ${a.location}</td><td><span class="badge ${a.status==='حاضر'?'badge-success':a.status==='متأخر'?'badge-warning':'badge-danger'}">${a.status}</span></td></tr>`).join('')}</tbody></table>`;
             document.getElementById('attendanceTable').innerHTML = html;
         }
 
@@ -1431,17 +1425,8 @@
             const dateStr = now.toISOString().split('T')[0];
             const timeStr = now.toTimeString().slice(0, 5);
             const isLate = parseInt(timeStr.split(':')[0]) >= 8 && parseInt(timeStr.split(':')[1]) > 15;
-            const newAtt = {
-                id: nextAttId++,
-                empId: emp.id,
-                empName: emp.name,
-                date: dateStr,
-                checkIn: timeStr,
-                checkOut: '',
-                method: 'تسجيل يدوي',
-                location: 'المكتب الرئيسي',
-                status: isLate ? 'متأخر' : 'حاضر'
-            };
+            const newAtt = { id: nextAttId++, empId: emp.id, empName: emp.name, date: dateStr, checkIn: timeStr,
+                checkOut: '', method: 'تسجيل يدوي', location: 'المكتب الرئيسي', status: isLate ? 'متأخر' : 'حاضر' };
             attendance.push(newAtt);
             persistAll();
             renderAttendance();
@@ -1452,71 +1437,29 @@
         // ==================== PAYROLL ====================
         function renderPayroll() {
             const html = `
-            <table>
-              <thead><tr><th>الموظف</th><th>الراتب الأساسي</th><th>البدلات</th><th>الخصومات</th><th>التأمينات</th><th>الضريبة</th><th>صافي الراتب</th></tr></thead>
-              <tbody>${employees.filter(e=>e.status==='نشط').map(e=>{
-                const gross = e.baseSalary + e.allowances;
-                const socialIns = Math.round(gross * settings.socialInsurance / 100);
-                const tax = Math.round(gross * settings.taxRate / 100);
-                const deductions = socialIns + tax;
-                const net = gross - deductions;
-                return `<tr>
-                  <td>${e.name}</td><td>${e.baseSalary.toLocaleString()}</td><td>${e.allowances.toLocaleString()}</td>
-                  <td style="color:#dc2626;">-${deductions.toLocaleString()}</td>
-                  <td>${socialIns.toLocaleString()}</td><td>${tax.toLocaleString()}</td>
-                  <td><strong>${net.toLocaleString()} ر.س</strong></td>
-                </tr>`;
-              }).join('')}</tbody></table>`;
+            <table><thead><tr><th>الموظف</th><th>الراتب الأساسي</th><th>البدلات</th><th>الخصومات</th><th>التأمينات</th><th>الضريبة</th><th>صافي الراتب</th></tr></thead>
+              <tbody>${employees.filter(e=>e.status==='نشط').map(e=>{const gross=e.baseSalary+e.allowances;const socialIns=Math.round(gross*settings.socialInsurance/100);const tax=Math.round(gross*settings.taxRate/100);const deductions=socialIns+tax;const net=gross-deductions;return`<tr><td>${e.name}</td><td>${e.baseSalary.toLocaleString()}</td><td>${e.allowances.toLocaleString()}</td><td style="color:#dc2626;">-${deductions.toLocaleString()}</td><td>${socialIns.toLocaleString()}</td><td>${tax.toLocaleString()}</td><td><strong>${net.toLocaleString()} ر.س</strong></td></tr>`;}).join('')}</tbody></table>`;
             document.getElementById('payrollTable').innerHTML = html;
         }
 
-        function calculatePayroll() {
-            renderPayroll();
-            showToast('🔄 تم تشغيل محرك حساب الرواتب الآلي', 'success');
-        }
+        function calculatePayroll() { renderPayroll();
+            showToast('🔄 تم تشغيل محرك حساب الرواتب الآلي', 'success'); }
 
         // ==================== LEAVES ====================
         function renderLeaves() {
             const html = `
-            <table>
-              <thead><tr><th>الموظف</th><th>النوع</th><th>من</th><th>إلى</th><th>الأيام</th><th>السبب</th><th>الحالة</th><th>المعتمد</th><th>إجراءات</th></tr></thead>
-              <tbody>${leaves.map(l=>`
-                <tr>
-                  <td>${l.empName}</td><td>${l.type}</td><td>${l.startDate}</td><td>${l.endDate}</td><td>${l.days}</td>
-                  <td>${l.reason}</td>
-                  <td><span class="badge ${l.status==='معتمدة'?'badge-success':l.status==='مرفوضة'?'badge-danger':'badge-warning'}">${l.status}</span></td>
-                  <td>${l.approver}</td>
-                  <td class="actions-cell">
-                    ${l.status==='معلقة'?`
-                      <button style="background:#dcfce7;color:#16a34a;" onclick="approveLeave(${l.id})">✅ قبول</button>
-                      <button style="background:#fee2e2;color:#dc2626;" onclick="rejectLeave(${l.id})">❌ رفض</button>`:'—'}
-                  </td>
-                </tr>`).join('')}</tbody></table>`;
+            <table><thead><tr><th>الموظف</th><th>النوع</th><th>من</th><th>إلى</th><th>الأيام</th><th>السبب</th><th>الحالة</th><th>المعتمد</th><th>إجراءات</th></tr></thead>
+              <tbody>${leaves.map(l=>`<tr><td>${l.empName}</td><td>${l.type}</td><td>${l.startDate}</td><td>${l.endDate}</td><td>${l.days}</td><td>${l.reason}</td><td><span class="badge ${l.status==='معتمدة'?'badge-success':l.status==='مرفوضة'?'badge-danger':'badge-warning'}">${l.status}</span></td><td>${l.approver}</td><td class="actions-cell">${l.status==='معلقة'?`<button style="background:#dcfce7;color:#16a34a;" onclick="approveLeave(${l.id})">✅ قبول</button><button style="background:#fee2e2;color:#dc2626;" onclick="rejectLeave(${l.id})">❌ رفض</button>`:'—'}</td></tr>`).join('')}</tbody></table>`;
             document.getElementById('leavesTable').innerHTML = html;
             document.getElementById('approvalWorkflow').innerHTML = leaves.filter(l => l.status === 'معلقة').map(l => `
-            <div style="background:#fef3c7;padding:10px 14px;border-radius:8px;margin-bottom:8px;font-size:13px;">
-              ⏳ ${l.empName} - ${l.type} (${l.days} يوم) - بانتظار الموافقة
-            </div>`).join('') || '<p style="color:#64748b;">لا توجد طلبات معلقة</p>';
+            <div style="background:#fef3c7;padding:10px 14px;border-radius:8px;margin-bottom:8px;font-size:13px;">⏳ ${l.empName} - ${l.type} (${l.days} يوم) - بانتظار الموافقة</div>`
+                ).join('') || '<p style="color:#64748b;">لا توجد طلبات معلقة</p>';
         }
 
         function openLeaveModal() {
             const html = `
             <div class="modal-header"><h3>📅 طلب إجازة جديد</h3><button class="modal-close" onclick="closeModal()">✕</button></div>
-            <div class="modal-body">
-              <form onsubmit="submitLeave(event)">
-                <div class="form-group"><label>الموظف</label><select id="lfEmp">${employees.filter(e=>e.status==='نشط').map(e=>`<option value="${e.id}">${e.name}</option>`).join('')}</select></div>
-                <div class="form-row">
-                  <div class="form-group"><label>نوع الإجازة</label><select id="lfType"><option>سنوية</option><option>مرضية</option><option>طارئة</option><option>أمومة</option></select></div>
-                  <div class="form-group"><label>عدد الأيام</label><input type="number" id="lfDays" value="1" min="1" required></div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group"><label>تاريخ البداية</label><input type="date" id="lfStart" required></div>
-                  <div class="form-group"><label>تاريخ النهاية</label><input type="date" id="lfEnd" required></div>
-                </div>
-                <div class="form-group"><label>السبب</label><input type="text" id="lfReason" required></div>
-                <button type="submit" class="btn btn-primary" style="width:100%;">📤 تقديم الطلب</button>
-              </form>
-            </div>`;
+            <div class="modal-body"><form onsubmit="submitLeave(event)"><div class="form-group"><label>الموظف</label><select id="lfEmp">${employees.filter(e=>e.status==='نشط').map(e=>`<option value="${e.id}">${e.name}</option>`).join('')}</select></div><div class="form-row"><div class="form-group"><label>نوع الإجازة</label><select id="lfType"><option>سنوية</option><option>مرضية</option><option>طارئة</option><option>أمومة</option></select></div><div class="form-group"><label>عدد الأيام</label><input type="number" id="lfDays" value="1" min="1" required></div></div><div class="form-row"><div class="form-group"><label>تاريخ البداية</label><input type="date" id="lfStart" required></div><div class="form-group"><label>تاريخ النهاية</label><input type="date" id="lfEnd" required></div></div><div class="form-group"><label>السبب</label><input type="text" id="lfReason" required></div><button type="submit" class="btn btn-primary" style="width:100%;">📤 تقديم الطلب</button></form></div>`;
             document.getElementById('modalContent').innerHTML = html;
             document.getElementById('modalOverlay').classList.add('active');
         }
@@ -1525,18 +1468,10 @@
             e.preventDefault();
             const empId = parseInt(document.getElementById('lfEmp').value);
             const emp = employees.find(em => em.id === empId);
-            const newLeave = {
-                id: nextLeaveId++,
-                empId,
-                empName: emp ? emp.name : '',
-                type: document.getElementById('lfType').value,
-                startDate: document.getElementById('lfStart').value,
-                endDate: document.getElementById('lfEnd').value,
-                days: parseInt(document.getElementById('lfDays').value),
-                reason: document.getElementById('lfReason').value,
-                status: 'معلقة',
-                approver: '-'
-            };
+            const newLeave = { id: nextLeaveId++, empId, empName: emp ? emp.name : '', type: document.getElementById(
+                    'lfType').value, startDate: document.getElementById('lfStart').value, endDate: document.getElementById(
+                    'lfEnd').value, days: parseInt(document.getElementById('lfDays').value), reason: document.getElementById(
+                    'lfReason').value, status: 'معلقة', approver: '-' };
             leaves.push(newLeave);
             persistAll();
             closeModal();
@@ -1545,55 +1480,32 @@
             showToast('📤 تم تقديم طلب الإجازة بنجاح', 'success');
         }
 
-        function approveLeave(id) {
-            const l = leaves.find(lv => lv.id === id);
-            if (l) { l.status = 'معتمدة';
+        function approveLeave(id) { const l = leaves.find(lv => lv.id === id); if (l) { l.status = 'معتمدة';
                 l.approver = currentUser?.name || 'المسؤول'; }
             persistAll();
             renderLeaves();
             updateDashboard();
-            showToast('✅ تمت الموافقة على الإجازة', 'success');
-        }
+            showToast('✅ تمت الموافقة على الإجازة', 'success'); }
 
-        function rejectLeave(id) {
-            const l = leaves.find(lv => lv.id === id);
-            if (l) { l.status = 'مرفوضة';
+        function rejectLeave(id) { const l = leaves.find(lv => lv.id === id); if (l) { l.status = 'مرفوضة';
                 l.approver = currentUser?.name || 'المسؤول'; }
             persistAll();
             renderLeaves();
             updateDashboard();
-            showToast('❌ تم رفض الإجازة', 'error');
-        }
+            showToast('❌ تم رفض الإجازة', 'error'); }
 
         // ==================== PERFORMANCE ====================
         function renderPerformance() {
             const html = `
-            <table>
-              <thead><tr><th>الموظف</th><th>الربع</th><th>الدرجة</th><th>التقييم</th><th>المقيم</th><th>التاريخ</th></tr></thead>
-              <tbody>${performances.map(p=>`
-                <tr>
-                  <td>${p.empName}</td><td>${p.quarter}</td><td>${p.score}/100</td>
-                  <td><span class="badge ${p.score>=90?'badge-success':p.score>=70?'badge-info':'badge-warning'}">${p.rating}</span></td>
-                  <td>${p.reviewer}</td><td>${p.date}</td>
-                </tr>`).join('')}</tbody></table>`;
+            <table><thead><tr><th>الموظف</th><th>الربع</th><th>الدرجة</th><th>التقييم</th><th>المقيم</th><th>التاريخ</th></tr></thead>
+              <tbody>${performances.map(p=>`<tr><td>${p.empName}</td><td>${p.quarter}</td><td>${p.score}/100</td><td><span class="badge ${p.score>=90?'badge-success':p.score>=70?'badge-info':'badge-warning'}">${p.rating}</span></td><td>${p.reviewer}</td><td>${p.date}</td></tr>`).join('')}</tbody></table>`;
             document.getElementById('performanceTable').innerHTML = html;
         }
 
         function openPerformanceModal() {
             const html = `
             <div class="modal-header"><h3>⭐ تقييم أداء جديد</h3><button class="modal-close" onclick="closeModal()">✕</button></div>
-            <div class="modal-body">
-              <form onsubmit="submitPerformance(event)">
-                <div class="form-group"><label>الموظف</label><select id="pfEmp">${employees.filter(e=>e.status==='نشط').map(e=>`<option value="${e.id}">${e.name}</option>`).join('')}</select></div>
-                <div class="form-row">
-                  <div class="form-group"><label>الربع</label><select id="pfQuarter"><option>Q1-2026</option><option>Q2-2026</option><option>Q3-2026</option><option>Q4-2026</option></select></div>
-                  <div class="form-group"><label>الدرجة (0-100)</label><input type="number" id="pfScore" min="0" max="100" value="85" required></div>
-                </div>
-                <div class="form-group"><label>التقييم</label><select id="pfRating"><option>ممتاز</option><option>جيد جداً</option><option>جيد</option><option>مقبول</option><option>ضعيف</option></select></div>
-                <div class="form-group"><label>المقيم</label><input type="text" id="pfReviewer" value="${currentUser?.name||'المسؤول'}" required></div>
-                <button type="submit" class="btn btn-primary" style="width:100%;">💾 حفظ التقييم</button>
-              </form>
-            </div>`;
+            <div class="modal-body"><form onsubmit="submitPerformance(event)"><div class="form-group"><label>الموظف</label><select id="pfEmp">${employees.filter(e=>e.status==='نشط').map(e=>`<option value="${e.id}">${e.name}</option>`).join('')}</select></div><div class="form-row"><div class="form-group"><label>الربع</label><select id="pfQuarter"><option>Q1-2026</option><option>Q2-2026</option><option>Q3-2026</option><option>Q4-2026</option></select></div><div class="form-group"><label>الدرجة (0-100)</label><input type="number" id="pfScore" min="0" max="100" value="85" required></div></div><div class="form-group"><label>التقييم</label><select id="pfRating"><option>ممتاز</option><option>جيد جداً</option><option>جيد</option><option>مقبول</option><option>ضعيف</option></select></div><div class="form-group"><label>المقيم</label><input type="text" id="pfReviewer" value="${currentUser?.name||'المسؤول'}" required></div><button type="submit" class="btn btn-primary" style="width:100%;">💾 حفظ التقييم</button></form></div>`;
             document.getElementById('modalContent').innerHTML = html;
             document.getElementById('modalOverlay').classList.add('active');
         }
@@ -1602,16 +1514,10 @@
             e.preventDefault();
             const empId = parseInt(document.getElementById('pfEmp').value);
             const emp = employees.find(em => em.id === empId);
-            const newPerf = {
-                id: nextPerfId++,
-                empId,
-                empName: emp ? emp.name : '',
-                quarter: document.getElementById('pfQuarter').value,
-                score: parseInt(document.getElementById('pfScore').value),
-                rating: document.getElementById('pfRating').value,
-                reviewer: document.getElementById('pfReviewer').value,
-                date: new Date().toISOString().split('T')[0]
-            };
+            const newPerf = { id: nextPerfId++, empId, empName: emp ? emp.name : '', quarter: document.getElementById(
+                    'pfQuarter').value, score: parseInt(document.getElementById('pfScore').value), rating: document
+                    .getElementById('pfRating').value, reviewer: document.getElementById('pfReviewer').value,
+                date: new Date().toISOString().split('T')[0] };
             performances.push(newPerf);
             persistAll();
             closeModal();
@@ -1619,11 +1525,269 @@
             showToast('⭐ تم حفظ تقييم الأداء', 'success');
         }
 
-        // ==================== REPORTS ====================
-        function exportReport(type) {
-            showToast('📄 جاري إعداد تقرير ' + type + '...', 'success');
-            setTimeout(() => exportPDF(), 500);
+        // ==================== REPORTS (ENHANCED) ====================
+        function generateReportData(type) {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('ar-SA', { year: 'numeric', month: 'long', day: 'numeric' });
+            const timeStr = now.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit' });
+            let report = {
+                title: '',
+                generatedAt: dateStr + ' - ' + timeStr,
+                company: settings.companyName,
+                type: type,
+                summary: {},
+                details: []
+            };
+            const activeEmployees = employees.filter(e => e.status === 'نشط');
+            switch (type) {
+                case 'comprehensive':
+                    report.title = '📊 التقرير الشامل للموارد البشرية';
+                    report.summary = { totalEmployees: activeEmployees.length, totalPayroll: activeEmployees.reduce((s,
+                            e) => s + e.baseSalary + e.allowances, 0), pendingLeaves: leaves.filter(l => l.status ===
+                            'معلقة').length, todayAttendance: attendance.filter(a => a.date === '2026-04-29').length,
+                        avgPerformance: performances.length > 0 ? Math.round(performances.reduce((s, p) => s + p.score,
+                            0) / performances.length) : 0 };
+                    report.details = activeEmployees.map(e => ({ name: e.name, dept: e.dept, position: e.position,
+                        salary: e.baseSalary + e.allowances, status: e.status }));
+                    break;
+                case 'attendance':
+                    report.title = '🕐 تقرير الحضور والانصراف';
+                    report.summary = { totalRecords: attendance.length, presentToday: attendance.filter(a => a.date ===
+                            '2026-04-29' && a.status === 'حاضر').length, lateToday: attendance.filter(a => a.date ===
+                            '2026-04-29' && a.status === 'متأخر').length };
+                    report.details = [...attendance].reverse().slice(0, 20);
+                    break;
+                case 'payroll':
+                    report.title = '💰 تقرير الرواتب';
+                    report.summary = { totalPayroll: activeEmployees.reduce((s, e) => s + e.baseSalary + e.allowances,
+                            0), totalDeductions: activeEmployees.reduce((s, e) => { const g = e.baseSalary + e
+                                .allowances; return s + Math.round(g * settings.socialInsurance / 100) + Math.round(
+                                    g * settings.taxRate / 100); }, 0), employeeCount: activeEmployees.length };
+                    report.details = activeEmployees.map(e => { const gross = e.baseSalary + e.allowances;
+                        const net = gross - Math.round(gross * settings.socialInsurance / 100) - Math.round(gross *
+                            settings.taxRate / 100); return { name: e.name, dept: e.dept, grossSalary: gross,
+                            netSalary: net }; });
+                    break;
+                case 'leaves':
+                    report.title = '📅 تقرير الإجازات';
+                    report.summary = { totalLeaves: leaves.length, pending: leaves.filter(l => l.status === 'معلقة')
+                            .length, approved: leaves.filter(l => l.status === 'معتمدة').length,
+                        rejected: leaves.filter(l => l.status === 'مرفوضة').length };
+                    report.details = [...leaves];
+                    break;
+                case 'performance':
+                    report.title = '⭐ تقرير تقييم الأداء';
+                    report.summary = { totalEvaluations: performances.length,
+                        avgScore: performances.length > 0 ? Math.round(performances.reduce((s, p) => s + p.score, 0) /
+                            performances.length) : 0, excellent: performances.filter(p => p.score >= 90).length };
+                    report.details = [...performances];
+                    break;
+                default:
+                    report.title = '📄 تقرير';
+            }
+            return report;
         }
+
+        function loadReportScheduleToForm() {
+            document.getElementById('reportCeoEmail').value = reportSchedule.ceoEmail;
+            document.getElementById('reportScheduleType').value = reportSchedule.reportType;
+            document.getElementById('reportFrequency').value = reportSchedule.frequency;
+            document.getElementById('reportTime').value = reportSchedule.time;
+            document.getElementById('reportWeeklyDay').value = reportSchedule.weeklyDay;
+            document.getElementById('reportMonthlyDay').value = reportSchedule.monthlyDay;
+            document.getElementById('reportYearlyMonth').value = reportSchedule.yearlyMonth;
+            document.getElementById('reportYearlyDay').value = reportSchedule.yearlyDay;
+            document.getElementById('reportScheduleEnabled').checked = reportSchedule.enabled;
+            updateFrequencyOptions();
+        }
+
+        function updateFrequencyOptions() {
+            const freq = document.getElementById('reportFrequency').value;
+            document.getElementById('weeklyDayRow').style.display = freq === 'weekly' ? 'flex' : 'none';
+            document.getElementById('monthlyDayRow').style.display = freq === 'monthly' ? 'flex' : 'none';
+            document.getElementById('yearlyDateRow').style.display = freq === 'yearly' ? 'flex' : 'none';
+            const freqDetailGroup = document.getElementById('frequencyDetailGroup');
+            const freqDetailLabel = document.getElementById('frequencyDetailLabel');
+            if (freq === 'daily') { freqDetailGroup.style.display = 'flex';
+                freqDetailLabel.textContent = '⏰ وقت الإرسال اليومي'; } else if (freq === 'weekly') { freqDetailGroup.style
+                    .display = 'flex';
+                freqDetailLabel.textContent = '⏰ وقت الإرسال الأسبوعي'; } else if (freq === 'monthly') { freqDetailGroup.style
+                    .display = 'flex';
+                freqDetailLabel.textContent = '⏰ وقت الإرسال الشهري'; } else if (freq === 'yearly') { freqDetailGroup.style
+                    .display = 'flex';
+                freqDetailLabel.textContent = '⏰ وقت الإرسال السنوي'; }
+        }
+
+        function saveReportSchedule() {
+            reportSchedule.ceoEmail = document.getElementById('reportCeoEmail').value.trim();
+            reportSchedule.reportType = document.getElementById('reportScheduleType').value;
+            reportSchedule.frequency = document.getElementById('reportFrequency').value;
+            reportSchedule.time = document.getElementById('reportTime').value;
+            reportSchedule.weeklyDay = parseInt(document.getElementById('reportWeeklyDay').value);
+            reportSchedule.monthlyDay = parseInt(document.getElementById('reportMonthlyDay').value);
+            reportSchedule.yearlyMonth = parseInt(document.getElementById('reportYearlyMonth').value);
+            reportSchedule.yearlyDay = parseInt(document.getElementById('reportYearlyDay').value);
+            reportSchedule.enabled = document.getElementById('reportScheduleEnabled').checked;
+            reportSchedule.nextScheduled = calculateNextSchedule();
+            persistAll();
+            updateScheduleUI();
+            showToast('💾 تم حفظ إعدادات الجدولة بنجاح', 'success');
+        }
+
+        function resetSchedule() {
+            reportSchedule = { ceoEmail: 'ceo@company.com', reportType: 'comprehensive', frequency: 'daily', time: '08:00',
+                weeklyDay: 0, monthlyDay: 1, yearlyMonth: 0, yearlyDay: 1, enabled: true, lastSent: null,
+                nextScheduled: null };
+            persistAll();
+            loadReportScheduleToForm();
+            updateScheduleUI();
+            showToast('🔄 تم إعادة ضبط إعدادات الجدولة', 'info');
+        }
+
+        function calculateNextSchedule() {
+            const now = new Date();
+            const [hours, minutes] = (reportSchedule.time || '08:00').split(':').map(Number);
+            let next = new Date(now);
+            next.setHours(hours, minutes, 0, 0);
+            switch (reportSchedule.frequency) {
+                case 'daily':
+                    if (next <= now) next.setDate(next.getDate() + 1);
+                    break;
+                case 'weekly':
+                    const targetDay = reportSchedule.weeklyDay;
+                    const currentDay = next.getDay();
+                    let daysUntil = targetDay - currentDay;
+                    if (daysUntil < 0 || (daysUntil === 0 && next <= now)) daysUntil += 7;
+                    next.setDate(next.getDate() + daysUntil);
+                    break;
+                case 'monthly':
+                    next.setDate(reportSchedule.monthlyDay);
+                    if (next <= now) next.setMonth(next.getMonth() + 1);
+                    break;
+                case 'yearly':
+                    next.setMonth(reportSchedule.yearlyMonth);
+                    next.setDate(reportSchedule.yearlyDay);
+                    if (next <= now) next.setFullYear(next.getFullYear() + 1);
+                    break;
+            }
+            return next.toISOString();
+        }
+
+        function updateScheduleUI() {
+            const enabled = document.getElementById('reportScheduleEnabled')?.checked ?? reportSchedule.enabled;
+            reportSchedule.enabled = enabled;
+            const statusBox = document.getElementById('scheduleStatusBox');
+            const statusTitle = document.getElementById('scheduleStatusTitle');
+            const statusDesc = document.getElementById('scheduleStatusDesc');
+            const ceoEmailDisplay = document.getElementById('ceoEmailDisplay');
+            const nextScheduleTime = document.getElementById('nextScheduleTime');
+            if (ceoEmailDisplay) ceoEmailDisplay.textContent = reportSchedule.ceoEmail || 'ceo@company.com';
+            if (enabled && reportSchedule.nextScheduled) {
+                if (statusBox) statusBox.className = 'highlight-box';
+                if (statusTitle) statusTitle.textContent = '🟢 نظام الإرسال الآلي نشط';
+                if (statusDesc) statusDesc.textContent = 'يتم إرسال التقارير تلقائياً إلى البريد الإلكتروني للمدير التنفيذي حسب الجدولة المحددة';
+                if (nextScheduleTime) {
+                    const nextDate = new Date(reportSchedule.nextScheduled);
+                    nextScheduleTime.textContent = nextDate.toLocaleDateString('ar-SA', { year: 'numeric', month: 'long',
+                        day: 'numeric' }) + ' - ' + nextDate.toLocaleTimeString('ar-SA', { hour: '2-digit',
+                        minute: '2-digit' });
+                }
+            } else {
+                if (statusBox) statusBox.className = 'highlight-box';
+                if (statusBox) statusBox.style.background = '#fefce8';
+                if (statusBox) statusBox.style.borderColor = '#f59e0b';
+                if (statusTitle) statusTitle.textContent = '⚠️ نظام الإرسال الآلي متوقف';
+                if (statusDesc) statusDesc.textContent = 'الإرسال الآلي معطل حالياً. قم بتفعيله من إعدادات الجدولة.';
+                if (nextScheduleTime) nextScheduleTime.textContent = '— (معطل)';
+            }
+            const freqTag = reportSchedule.frequency === 'daily' ? '🏷 يومي' : reportSchedule.frequency === 'weekly' ?
+                '🏷 أسبوعي' : reportSchedule.frequency === 'monthly' ? '🏷 شهري' : '🏷 سنوي';
+            if (statusDesc && enabled) statusDesc.textContent += ' | ' + freqTag;
+        }
+
+        function sendTestEmail() {
+            const report = generateReportData(reportSchedule.reportType);
+            const logEntry = {
+                id: emailLog.length + 1,
+                date: new Date().toISOString(),
+                recipient: reportSchedule.ceoEmail,
+                reportType: reportSchedule.reportType,
+                reportTitle: report.title,
+                status: 'تم الإرسال ✅',
+                type: 'تجريبي'
+            };
+            emailLog.unshift(logEntry);
+            reportSchedule.lastSent = new Date().toISOString();
+            reportSchedule.nextScheduled = calculateNextSchedule();
+            persistAll();
+            renderEmailLog();
+            updateScheduleUI();
+            showToast('📤 تم إرسال التقرير التجريبي إلى ' + reportSchedule.ceoEmail + ' بنجاح!', 'success');
+        }
+
+        function sendManualEmailReport() {
+            const report = generateReportData('comprehensive');
+            const logEntry = {
+                id: emailLog.length + 1,
+                date: new Date().toISOString(),
+                recipient: reportSchedule.ceoEmail,
+                reportType: 'comprehensive',
+                reportTitle: report.title,
+                status: 'تم الإرسال ✅',
+                type: 'يدوي'
+            };
+            emailLog.unshift(logEntry);
+            reportSchedule.lastSent = new Date().toISOString();
+            persistAll();
+            renderEmailLog();
+            updateScheduleUI();
+            showToast('📧 تم إرسال التقرير الشامل إلى المدير التنفيذي (' + reportSchedule.ceoEmail + ') بنجاح!',
+            'success');
+        }
+
+        function executeAutomatedSend() {
+            const report = generateReportData(reportSchedule.reportType);
+            const logEntry = {
+                id: emailLog.length + 1,
+                date: new Date().toISOString(),
+                recipient: reportSchedule.ceoEmail,
+                reportType: reportSchedule.reportType,
+                reportTitle: report.title,
+                status: 'تم الإرسال ✅',
+                type: 'آلي'
+            };
+            emailLog.unshift(logEntry);
+            reportSchedule.lastSent = new Date().toISOString();
+            reportSchedule.nextScheduled = calculateNextSchedule();
+            persistAll();
+            renderEmailLog();
+            updateScheduleUI();
+            showToast('📬 تقرير آلي: تم إرسال ' + report.title + ' إلى ' + reportSchedule.ceoEmail, 'info');
+        }
+
+        function renderEmailLog() {
+            const tableEl = document.getElementById('emailLogTable');
+            if (!tableEl) return;
+            if (emailLog.length === 0) {
+                tableEl.innerHTML =
+                    '<p style="text-align:center;color:#94a3b8;">لا توجد تقارير مرسلة بعد. قم بإرسال تقرير تجريبي أو انتظر الإرسال الآلي.</p>';
+                return;
+            }
+            const html = `
+            <table><thead><tr><th>#</th><th>التاريخ والوقت</th><th>المستلم</th><th>نوع التقرير</th><th>عنوان التقرير</th><th>نوع الإرسال</th><th>الحالة</th></tr></thead>
+              <tbody>${emailLog.slice(0, 30).map(l=>{const d=new Date(l.date);const dateStr=d.toLocaleDateString('ar-SA',{year:'numeric',month:'short',day:'numeric'});const timeStr=d.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'});const typeBadge=l.type==='آلي'?'badge-info':l.type==='تجريبي'?'badge-purple':'badge-teal';return`<tr class="email-log-row"><td>${l.id}</td><td>${dateStr} ${timeStr}</td><td>${l.recipient}</td><td>${l.reportType}</td><td>${l.reportTitle}</td><td><span class="badge ${typeBadge}">${l.type}</span></td><td>${l.status}</td></tr>`;}).join('')}</tbody></table>`;
+            tableEl.innerHTML = html;
+        }
+
+        function clearEmailLog() {
+            if (confirm('هل أنت متأكد من مسح سجل الإرسال بالكامل؟')) { emailLog = [];
+                persistAll();
+                renderEmailLog();
+                showToast('🗑 تم مسح سجل الإرسال', 'error'); }
+        }
+
+        function exportReport(type) { showToast('📄 جاري إعداد تقرير ' + type + '...', 'success');
+            setTimeout(() => exportPDF(), 500); }
 
         function exportPDF() {
             const { jsPDF } = window.jspdf;
@@ -1638,28 +1802,57 @@
             doc.setFontSize(13);
             doc.text('قائمة الموظفين النشطين:', 15, y);
             y += 8;
-            employees.filter(e => e.status === 'نشط').forEach((e, i) => {
-                if (y > 180) { doc.addPage();
+            employees.filter(e => e.status === 'نشط').forEach((e, i) => { if (y > 180) { doc.addPage();
                     y = 20; }
                 doc.setFontSize(10);
-                doc.text(`${i+1}. ${e.name} - ${e.dept} - ${e.position} - ${e.baseSalary.toLocaleString()} ر.س`,
-                    15, y);
-                y += 7;
-            });
+                doc.text(`${i+1}. ${e.name} - ${e.dept} - ${e.position} - ${e.baseSalary.toLocaleString()} ر.س`, 15,
+                    y);
+                y += 7; });
             doc.save('hrms_report.pdf');
             showToast('📕 تم تصدير التقرير PDF', 'success');
         }
 
         function exportExcel() {
             const wb = XLSX.utils.book_new();
-            const ws1 = XLSX.utils.json_to_sheet(employees);
-            const ws2 = XLSX.utils.json_to_sheet(attendance);
-            const ws3 = XLSX.utils.json_to_sheet(leaves);
-            XLSX.utils.book_append_sheet(wb, ws1, 'الموظفين');
-            XLSX.utils.book_append_sheet(wb, ws2, 'الحضور');
-            XLSX.utils.book_append_sheet(wb, ws3, 'الإجازات');
+            XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(employees), 'الموظفين');
+            XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(attendance), 'الحضور');
+            XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(leaves), 'الإجازات');
+            XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(performances), 'تقييم الأداء');
             XLSX.writeFile(wb, 'hrms_full_report.xlsx');
             showToast('📗 تم تصدير التقرير Excel', 'success');
+        }
+
+        // ==================== SCHEDULE CHECKER (AUTO EMAIL) ====================
+        let scheduleCheckerInterval = null;
+
+        function startScheduleChecker() {
+            if (scheduleCheckerInterval) clearInterval(scheduleCheckerInterval);
+            // Check every 30 seconds
+            scheduleCheckerInterval = setInterval(checkAndSendScheduledReport, 30000);
+            // Also do an initial check
+            setTimeout(checkAndSendScheduledReport, 2000);
+            console.log('🟢 مدقق الجدولة الآلي مفعل (كل 30 ثانية)');
+        }
+
+        function checkAndSendScheduledReport() {
+            if (!reportSchedule.enabled) return;
+            if (!reportSchedule.nextScheduled) {
+                reportSchedule.nextScheduled = calculateNextSchedule();
+                persistAll();
+                return;
+            }
+            const now = new Date();
+            const nextScheduled = new Date(reportSchedule.nextScheduled);
+            if (now >= nextScheduled) {
+                console.log('🔔 حان موعد الإرسال الآلي للتقرير!');
+                executeAutomatedSend();
+                reportSchedule.nextScheduled = calculateNextSchedule();
+                persistAll();
+                if (document.getElementById('page-reports')?.classList.contains('active')) {
+                    renderEmailLog();
+                    updateScheduleUI();
+                }
+            }
         }
 
         // ==================== SETTINGS ====================
@@ -1687,40 +1880,35 @@
         }
 
         // ==================== MODAL ====================
-        function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('active');
-            document.getElementById('modalContent').innerHTML = '';
-        }
-        document.getElementById('modalOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
+        function closeModal() { document.getElementById('modalOverlay').classList.remove('active');
+            document.getElementById('modalContent').innerHTML = ''; }
+        document.getElementById('modalOverlay').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
 
         // ==================== TOAST ====================
-        function showToast(msg, type) {
-            const toast = document.getElementById('toast');
+        function showToast(msg, type) { const toast = document.getElementById('toast');
             toast.textContent = msg;
             toast.className = 'toast show ' + type;
             clearTimeout(toast._timeout);
-            toast._timeout = setTimeout(() => { toast.classList.remove('show'); }, 3000);
-        }
+            toast._timeout = setTimeout(() => { toast.classList.remove('show'); }, 3500); }
 
         // ==================== INIT ====================
         function init() {
-            // Check if already logged in (for demo, just show login)
             document.getElementById('loginPage').style.display = 'flex';
             document.getElementById('appContainer').classList.remove('active');
             loadSettingsToForm();
+            // Initialize next scheduled time if not set
+            if (!reportSchedule.nextScheduled && reportSchedule.enabled) {
+                reportSchedule.nextScheduled = calculateNextSchedule();
+                persistAll();
+            }
+            console.log('✅ HRMS System Ready - الإصدار 3.0.0');
+            console.log('👤 Demo Login: admin / admin123');
+            console.log('📧 نظام الإرسال الآلي للتقارير مفعل');
+            console.log('📋 الميزات: موظفين، حضور (ZKTeco+GPS)، رواتب، إجازات، تقييم أداء، تقارير، إرسال بريد آلي');
         }
 
-        // Keyboard shortcut to close modal
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
-
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
         init();
-        console.log('✅ HRMS System Ready');
-        console.log('👤 Demo Login: admin / admin123');
-        console.log('📋 Features: Employees, Attendance (ZKTeco+GPS), Payroll, Leaves, Performance, Reports, API');
     </script>
 </body>
 </html>
